@@ -1,0 +1,11 @@
+#ifndef COUNTERSHARED_H
+#define COUNTERSHARED_H
+
+#include <QtCore>
+
+
+Q_DECLARE_LOGGING_CATEGORY(mqttConnection)
+Q_DECLARE_LOGGING_CATEGORY(counterClient)
+Q_DECLARE_LOGGING_CATEGORY(counterService)
+
+#endif // COUNTERSHARED_H
