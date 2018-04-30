@@ -4,11 +4,6 @@
 #include <QtCore>
 #include <qmqtt.h>
 
-struct Message {
-    QString topic;
-    QVariant data;
-};
-
 
 class MqttClient : public QObject
 {

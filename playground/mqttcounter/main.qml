@@ -21,7 +21,8 @@ ApplicationWindow {
         Button {
             text: '+'
 //            onClicked: client.increment()
-            onClicked: mqtt.publish("count/Counter/count", {count:5});
+//            onClicked: mqtt.publish("count/Counter/count", {count:5});
+            onClicked: mqtt.publish("count/Counter/increment");
         }
     }
 
