@@ -31,7 +31,7 @@ log = logging.getLogger(__name__)
 features = set()
 
 
-def run(src, dst):
+def run(src, dst, force=False):
     log.debug('run {0} {1}'.format(src, dst))
     project = Path(dst).name
     classPrefix = ''
@@ -45,25 +45,14 @@ def run(src, dst):
         'features': features,
     }
 
-    generator = RuleGenerator(search_path=here / 'templates', destination=dst, context=context, features=features)
+    generator = RuleGenerator(search_path=here / 'templates', destination=dst, context=context, features=features, force=force)
 
     Filters.classPrefix = classPrefix
+    generator.filters.update(Filters.get_filters())
     generator.filters.update({
-    #     'defaultValue': CustomFilters.defaultValue,
-    #     'returnType': CustomFilters.returnType,
-    #     'parameterType': CustomFilters.parameterType,
-    #     'parameters': CustomFilters.parameters,
-    #     'signature': CustomFilters.signature,
-    #     'parse_doc': parse_doc,
-    #     'hash': qface.filters.hash,
-    #     'jsonify': qface.filters.jsonify,
-    #     'signalName': Filters.signalName,
-    #     'open_ns': Filters.open_ns,
-    #     'close_ns': Filters.close_ns,
-    #     'using_ns': Filters.using_ns,
-    #     'ns': Filters.ns,
-        'identifier': Filters.identifier,
-    #     'path': CustomFilters.path,
+        'parse_doc': parse_doc,
+        'hash': qface.filters.hash,
+        'jsonify': qface.filters.jsonify,
     })
 
     generator.process_rules(here / 'qtmqtt.yml', system)
@@ -74,10 +63,11 @@ def run(src, dst):
 @click.option('--scaffold/--no-scaffold', default=True, help="Generates scaffolding app")
 @click.option('--apps/--no-apps', default=True, help="Generates apps stubs")
 @click.option('--servers/--no-servers', default=True, help="Generates server code")
+@click.option('--force/--no-force', default=True, help="Force writing of target files, ignores preserve")
 @click.option('cmd', '--exec', type=click.Path(exists=True), multiple=True, help="Executes script after code generation")
 @click.argument('src', nargs=-1, type=click.Path(exists=True))
 @click.argument('dst', nargs=1, type=click.Path(exists=False, file_okay=False))
-def app(src, dst, reload, cmd, scaffold, apps, servers):
+def app(src, dst, reload, cmd, scaffold, apps, servers, force):
     """Takes several files or directories as src and generates the code
     in the given dst directory."""
     global features
@@ -92,7 +82,7 @@ def app(src, dst, reload, cmd, scaffold, apps, servers):
         argv.remove('--reload')
         monitor(here, src, dst, argv)
     else:
-        run(src, dst)
+        run(src, dst, force)
         sh(cmd)
 
 
