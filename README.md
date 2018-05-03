@@ -22,7 +22,7 @@ Create a `python3` virtual environment
 
 Clone and install the lates `qface`    
 
-    git clone git clone git@github.com:Pelagicore/qface.git
+    git clone git@github.com:Pelagicore/qface.git
     pip install -e qface --upgrade
 
 Clone and install latest `qface-qtmqtt` solution
