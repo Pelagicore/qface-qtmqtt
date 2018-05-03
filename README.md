@@ -54,6 +54,41 @@ It will just generate the libraries in the out folder and it's up to you to inte
 
 Note: Please be aware the project makes use a SOURCE_DIR and BUILD_DIR qmake variables specified in a `.qmake.conf` file.
 
+
+# Design
+
+Based on the above counter example the design of the generated code will look like this.
+
+                                             lib_counter
+    +--------------------------------------------------+
+    |                                                  |
+    |             +------------+                       |
+    |          +--+ MqttClient +---------+             |
+    |          |  +------------+         |             |
+    |          |                         |             |
+    |          |                         |             |
+    |  +-------+-------+   +-------------+----------+  |
+    |  | CounterClient |   | AbstractCounterService |  |
+    |  +-------+-------+   +-------------+----------+  |
+    |          |                         |             |
+    +--------------------------------------------------+
+               |                         |
+               |                +--------+-------+
+               |                | CounterService |
+               |                +--------+-------+
+               |                         |
+               |                         |
+        +------+------+             +----+----+
+        | Application |             |  Server |
+        +-------------+             +---------+
+
+
+
+
+The `CounterClient` uses the generic `MqttClient` to publish messages and subscribe to topics. The `CounterClient` offers a concrete client API (e.g. count property, increment, decrement methods).
+The `AbstractCounterService` uses the `MqttClient` to subscribe to the module topic and to provide abstract set/get count methods which needs to be implemented in the concrete `CounterService`. The Server startes the main loop and creates the CounterService in one process. The Application uses the client in another process. Both are connected via a MQTT Broker.
+
+
 # Playground
 
 The playgorund folder contains some sample projects using Mqtt clients.
