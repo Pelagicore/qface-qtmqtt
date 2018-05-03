@@ -28,12 +28,12 @@ Clone and install the lates `qface`
 Clone and install latest `qface-qtmqtt` solution
 
     git clone git@gitlab.com:jryannel/qface-qtmqtt.git
-    pip install -q qface-qtmqtt
+    pip install -e qface-qtmqtt --upgrade
 
 Create a simple `qface` interface document `counter.qface`
 
     module counter 1.0
-
+    
     interface Counter {
         int count
         void increment();
@@ -44,7 +44,15 @@ Run the code generation
 
     qface-qtmqtt counter.qface out
 
-Now you can open the `out/out.pro` document.
+To generate the code in the out folder. Now you can open the `out/out.pro` document.
+
+To not generate the app and the service implementation use 
+
+    qface-qtmqtt counter.qface out --no-scaffold
+
+It will just generate the libraries in the out folder and it's up to you to integrate it into your project.
+
+Note: Please be aware the project makes use a SOURCE_DIR and BUILD_DIR qmake variables specified in a `.qmake.conf` file.
 
 # Playground
 
