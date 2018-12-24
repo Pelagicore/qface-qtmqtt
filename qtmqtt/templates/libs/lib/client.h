@@ -6,7 +6,7 @@
 #pragma once
 
 #include <QtCore>
-#include <QtQml>
+#include <qmqtt.h>
 
 class MqttClient;
 

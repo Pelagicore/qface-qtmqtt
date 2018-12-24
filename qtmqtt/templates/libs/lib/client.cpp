@@ -10,6 +10,7 @@
 {{interface.comment}}
 {{class}}::{{class}}(QObject *parent)
     : QObject(parent)
+    , m_connection(new MqttClient(this))
 {% for property in interface.properties %}
     , m_{{property}}({{property|defaultValue}})
 {% endfor %}

@@ -7,7 +7,7 @@ CONFIG += c++11
 
 QT += core
 QT += qml
-QT += mqtt
+QT += qmqtt
 
 HEADERS += mqttclient.h
 SOURCES += mqttclient.cpp

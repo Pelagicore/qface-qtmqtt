@@ -16,6 +16,7 @@ class {{class}} : public Abstract{{class}}
 {% endfor %}
 public:
     explicit {{class}}(QObject *parent = nullptr);
+    virtual ~{{class}}();
 public:
 {% for property in interface.properties %}
     {{ cpp.property_setter_decl(property) }}

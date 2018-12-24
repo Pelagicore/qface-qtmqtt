@@ -1,0 +1,7 @@
+module count 1.0
+
+interface Counter {
+    int count
+    void increment()
+    void decrement()
+}

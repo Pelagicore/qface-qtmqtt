@@ -16,7 +16,7 @@ int main(int argc, char** argv)
 {% set major = module.majorVersion %}
 {% set minor = module.minorVersion %}
 {% for interface in module.interfaces %}
-    qmlRegisterType<{{interface}}Client>(uri, {{major}}, {{minor}}, "{{interface}}Client");
+    qmlRegisterType<{{interface}}Client>("{{module}}", {{major}}, {{minor}}, "{{interface}}Client");
 {% endfor %}
 {% endfor %}
 

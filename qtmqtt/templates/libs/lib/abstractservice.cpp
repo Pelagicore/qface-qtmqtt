@@ -9,6 +9,7 @@
 
 {{class}}::{{class}}(QObject *parent)
     : QObject(parent)
+    , m_connection(new MqttClient(this))
 {
     qCDebug({{interface|lower}}Service) << __func__;
     connect(m_connection, &MqttClient::received, this, &{{class}}::onReceived);

@@ -63,7 +63,7 @@ def run(src, dst, force=False):
 @click.option('--scaffold/--no-scaffold', default=True, help="Generates scaffolding app")
 @click.option('--apps/--no-apps', default=True, help="Generates apps stubs")
 @click.option('--servers/--no-servers', default=True, help="Generates server code")
-@click.option('--force/--no-force', default=True, help="Force writing of target files, ignores preserve")
+@click.option('--force/--no-force', default=False, help="Force writing of target files, ignores preserve")
 @click.option('cmd', '--exec', type=click.Path(exists=True), multiple=True, help="Executes script after code generation")
 @click.argument('src', nargs=-1, type=click.Path(exists=True))
 @click.argument('dst', nargs=1, type=click.Path(exists=False, file_okay=False))
