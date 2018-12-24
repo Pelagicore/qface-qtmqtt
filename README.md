@@ -33,6 +33,8 @@ Clone latest `qface-qtmqtt` solution
 
     git clone git@github.com:Pelagicore/qface-qtmqtt.git
 
+# Run
+
 Create a simple `qface` interface document `counter.qface`
 
     module counter 1.0
@@ -42,8 +44,6 @@ Create a simple `qface` interface document `counter.qface`
         void increment();
         void decrement();
     }
-
-# Run
 
 Run the code generation
 
