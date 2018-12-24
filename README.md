@@ -1,8 +1,10 @@
-# QFace QtMqtt Code Generator
+# QFace QMQTT Code Generator
 
 *WORK IN PROGRESS*
 
 # Installation
+
+## Setup QMQTT
 
 Make a new folder called `mqtt`
 
@@ -15,6 +17,7 @@ Clone and build `qmqtt`
     mkdir build && cd build
     qmake .. && make && make install
 
+## Setup QFace
 Create a `python3` virtual environment
 
     virtualenv -p python3 venv
@@ -24,6 +27,7 @@ Clone and install the lates `qface`
 
     pip install git+https://github.com/Pelagicore/qface.git#master
 
+## Setup Qface-QtMqtt
 
 Clone latest `qface-qtmqtt` solution
 
@@ -39,6 +43,8 @@ Create a simple `qface` interface document `counter.qface`
         void decrement();
     }
 
+# Run
+
 Run the code generation
 
     qface --rules qface-mqtt/rules.yml --target out counter.qface out
@@ -47,7 +53,7 @@ To generate the code in the out folder. Now you can open the `out/out.pro` docum
 
 To not generate the app and the service implementation use 
 
-    qface --rules qface-mqtt/rules.yml --target out --no-feature scaffold counter.qface
+    qface --rules qface-mqtt/rules.yml --target out --no-scaffold counter.qface
 
 It will just generate the libraries in the out folder and it's up to you to integrate it into your project.
 
