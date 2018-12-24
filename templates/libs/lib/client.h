@@ -27,7 +27,7 @@ protected Q_SLOTS:
     void onReceived(const QString& topic, const QVariantMap& data);
 public:
 {% for property in interface.properties %}
-    Q_INVOKABLE void push{{property|upperfirst}}({{ property|parameterType }}){{ending}};
+    void push{{property|upperfirst}}({{ property|qt.parameterType }}){{ending}};
     {{ cpp.property_setter_decl(property) }}
     {{ cpp.property_getter_decl(property) }}
 {% endfor %}

@@ -1,4 +1,4 @@
-#include "{{module}}shared.h"
+#include "shared.h"
 
 Q_LOGGING_CATEGORY(mqttClient, "mqtt.client")
 {% for interface in module.interfaces %}

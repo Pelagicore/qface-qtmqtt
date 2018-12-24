@@ -12,7 +12,7 @@
     : QObject(parent)
     , m_connection(new MqttClient(this))
 {% for property in interface.properties %}
-    , m_{{property}}({{property|defaultValue}})
+    , m_{{property}}({{property|qt.defaultValue}})
 {% endfor %}
 {
     connect(m_connection, &MqttClient::received, this, &{{class}}::onReceived);
@@ -25,7 +25,7 @@
 
 {% for property in interface.properties %}
 
-void {{class}}::push{{property|upperfirst}}({{ property|parameterType }})
+void {{class}}::push{{property|upperfirst}}({{ property|qt.parameterType }})
 {
     m_connection->publish("{{module|lower}}/{{interface}}/{{property}}", QVariantMap{ {"{{property}}", {{property}} } });
 }
@@ -37,7 +37,7 @@ void {{class}}::push{{property|upperfirst}}({{ property|parameterType }})
 
 
 {%- for operation in interface.operations %}
-{{operation|returnType}} {{class}}::{{operation}}({{operation|parameters}})
+{{operation|qt.returnType}} {{class}}::{{operation}}({{operation|qt.parameters}})
 {
     m_connection->publish("{{module|lower}}/{{interface}}/{{operation}}");
 }
@@ -48,7 +48,7 @@ void {{class}}::onReceived(const QString& topic, const QVariantMap& data)
 {
 {% for property in interface.properties %}
     if(topic == "{{module|lower}}/{{interface}}/{{property}}") {
-        set{{property|upperfirst}}(data.value("{{property}}").value<{{property|returnType}}>());
+        set{{property|upperfirst}}(data.value("{{property}}").value<{{property|qt.returnType}}>());
     }
 {% endfor %}
 }

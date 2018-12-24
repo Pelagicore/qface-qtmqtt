@@ -9,7 +9,7 @@
 {{class}}::{{class}}(QObject *parent)
     : Abstract{{class}}(parent)
 {% for property in interface.properties %}
-    , m_{{property}}({{property|defaultValue}})
+    , m_{{property}}({{property|qt.defaultValue}})
 {% endfor %}
 {
 }
@@ -19,7 +19,7 @@
 }
 
 {% for property in interface.properties %}
-void {{class}}::set{{property|upperfirst}}({{ property|parameterType }})
+void {{class}}::set{{property|upperfirst}}({{ property|qt.parameterType }})
 {
     push{{property|upperfirst}}({{ property }});
 }

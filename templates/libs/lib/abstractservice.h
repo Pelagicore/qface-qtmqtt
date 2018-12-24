@@ -20,15 +20,15 @@ public:
     ~{{class}}();
 public Q_SLOTS:
 {% for operation in interface.operations %}
-    virtual {{operation|returnType}} {{operation}}({{operation|parameters}}) = 0;
+    virtual {{operation|qt.returnType}} {{operation}}({{operation|qt.parameters}}) = 0;
 {% endfor %}
 protected Q_SLOTS:
     void onReceived(const QString& topic, const QVariantMap& data);
 public:
 {% for property in interface.properties %}
-    Q_INVOKABLE void push{{property|upperfirst}}({{ property|parameterType }}){{ending}};
-    virtual void set{{property|upperfirst}}({{ property|parameterType }}) = 0;
-    virtual {{property|returnType}} {{property}}() const = 0;
+    Q_INVOKABLE void push{{property|upperfirst}}({{ property|qt.parameterType }}){{ending}};
+    virtual void set{{property|upperfirst}}({{ property|qt.parameterType }}) = 0;
+    virtual {{property|qt.returnType}} {{property}}() const = 0;
 {% endfor %}
 Q_SIGNALS:
 {% for property in interface.properties %}
