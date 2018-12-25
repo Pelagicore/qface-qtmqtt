@@ -7,6 +7,7 @@
 
 #include "abstract{{class|lower}}.h"
 
+{{module|qt.using_ns}}
 
 class {{class}} : public Abstract{{class}}
 {

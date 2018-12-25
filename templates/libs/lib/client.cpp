@@ -5,7 +5,9 @@
 
 #include "{{class|lower}}.h"
 #include "mqttclient.h"
-#include "{{module.module_name|lower}}shared.h"
+#include "shared.h"
+
+{{ module|qt.open_ns }}
 
 {{interface.comment}}
 {{class}}::{{class}}(QObject *parent)
@@ -52,4 +54,6 @@ void {{class}}::onReceived(const QString& topic, const QVariantMap& data)
     }
 {% endfor %}
 }
+
+{{ module|qt.close_ns }}
 

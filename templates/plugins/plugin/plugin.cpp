@@ -26,7 +26,7 @@ void Plugin::registerTypes(const char *uri)
 {
     // @uri {{module}}
 {% for interface in module.interfaces %}
-    qmlRegisterType<{{interface}}Client>(uri, {{major}}, {{minor}}, "{{interface}}Client");
+    qmlRegisterType<{{module|qt.ns}}{{interface}}Client>(uri, {{major}}, {{minor}}, "{{interface}}Client");
 {% endfor %}
 
 {% for struct in module.structs %}

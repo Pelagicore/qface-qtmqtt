@@ -12,8 +12,8 @@ QT += qmqtt
 HEADERS += mqttclient.h
 SOURCES += mqttclient.cpp
 
-HEADERS += {{module.module_name|lower}}shared.h
-SOURCES += {{module.module_name|lower}}shared.cpp
+HEADERS += shared.h
+SOURCES += shared.cpp
 
 {% for interface in module.interfaces %}
 HEADERS += {{interface|lower}}client.h

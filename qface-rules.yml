@@ -21,8 +21,8 @@ lib:
             - 'variantmodel.h': 'variantmodel.h'
             - 'variantmodel.cpp': 'variantmodel.cpp'
             - 'use_lib_{{module|identifier}}.pri': 'use_lib.pri'
-            - '{{module.module_name|lower}}shared.h': 'shared.h'
-            - '{{module.module_name|lower}}shared.cpp': 'shared.cpp'
+            - 'shared.h': 'shared.h'
+            - 'shared.cpp': 'shared.cpp'
     interface:
         documents:
             - '{{interface|lower}}client.h': 'client.h'

@@ -1,7 +1,7 @@
 #include "mqttclient.h"
 #include "shared.h"
 
-{{ module|qt.open_ns }}
+namespace QFace { namespace MQTT {
 
 MqttClient::MqttClient(QObject *parent)
     : QObject(parent)
@@ -119,4 +119,5 @@ void MqttClient::onError(const QMQTT::ClientError error)
     qCDebug(mqttClient) << __func__ << error;
 }
 
-{{ module|qt.close_ns }}
+}} // namespace QFace::MQTT
+

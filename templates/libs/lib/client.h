@@ -8,6 +8,8 @@
 #include <QtCore>
 #include <qmqtt.h>
 
+{{ module|qt.open_ns }}
+
 class MqttClient;
 
 class {{class}} : public QObject
@@ -44,3 +46,5 @@ private:
     {{ cpp.property_member_decl(property) }}
 {% endfor %}
 };
+
+{{ module|qt.close_ns }}

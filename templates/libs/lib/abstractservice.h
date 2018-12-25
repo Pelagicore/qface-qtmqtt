@@ -9,6 +9,8 @@
 
 #include "mqttclient.h"
 
+{{ module|qt.open_ns }}
+
 class {{class}} : public QObject
 {
     Q_OBJECT
@@ -40,3 +42,5 @@ Q_SIGNALS:
 private:
     MqttClient *m_connection;
 };
+
+{{ module|qt.close_ns }}

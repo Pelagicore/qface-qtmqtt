@@ -6,6 +6,8 @@
 
 #include "{{class|lower}}.h"
 
+{{module|qt.using_ns}}
+
 {{class}}::{{class}}(QObject *parent)
     : Abstract{{class}}(parent)
 {% for property in interface.properties %}

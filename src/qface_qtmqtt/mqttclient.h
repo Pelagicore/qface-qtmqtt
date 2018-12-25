@@ -1,10 +1,9 @@
-#ifndef MQTTCLIENT_H
-#define MQTTCLIENT_H
+#pragma once
 
 #include <QtCore>
 #include <qmqtt.h>
 
-{{ module|qt.open_ns }}
+namespace QFace { namespace MQTT {
 
 class MqttClient : public QObject
 {
@@ -38,7 +37,4 @@ private:
     int m_packageId;
 };
 
-{{ module|qt.close_ns }}
-
-
-#endif // MQTTPEER_H
+}} // namespace QFace::MQTT
