@@ -23,9 +23,21 @@ Create a `python3` virtual environment
     virtualenv -p python3 venv
     source venv/bin/activate
 
-Clone and install the lates `qface`    
+Clone and install the latest `qface`    
 
-    pip install git+https://github.com/Pelagicore/qface.git#master
+    git clone git@github.com:Pelagicore/qface.git
+    cd qface && git checkout develop
+    pip install -e . --upgrade
+
+This will install an editable installation, means changes will be tracked. To update just
+
+    cd qface
+    git pull
+    pip install -e . --upgrade
+
+Or without cloning
+
+    pip install git+https://github.com/Pelagicore/qface.git#develop
 
 ## Setup Qface-QtMqtt
 
