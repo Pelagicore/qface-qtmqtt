@@ -1,3 +1,3 @@
-TEMPLATE += subdirs
+TEMPLATE = subdirs
 
-SUBDIRS += qface_qtmqtt
+SUBDIRS += qface-qtmqtt

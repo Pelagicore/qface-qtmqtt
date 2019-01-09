@@ -9,7 +9,7 @@ MqttClient::MqttClient(QObject *parent)
     , m_connected(false)
     , m_packageId(0)
 {
-    qCDebug(mqttClient) << __func__;
+    qCDebug(qfaceMqtt) << __func__;
 
     QUrl url(qEnvironmentVariable("MQTT_URL", "tcp://127.0.0.1:1883"));
     m_client = new QMQTT::Client(QHostAddress(url.host()), url.port(), this);
@@ -23,14 +23,14 @@ MqttClient::MqttClient(QObject *parent)
 
 void MqttClient::subscribe(const QString &topic)
 {
-    qCDebug(mqttClient) << __func__;
+    qCDebug(qfaceMqtt) << __func__;
     m_subscriptions.enqueue(topic);
     process();
 }
 
 void MqttClient::unsubscribe(const QString &topic)
 {
-    qCDebug(mqttClient) << __func__;
+    qCDebug(qfaceMqtt) << __func__;
     if(!m_client) {
         return;
     }
@@ -39,7 +39,7 @@ void MqttClient::unsubscribe(const QString &topic)
 
 void MqttClient::publish(const QString &topic, const QVariantMap &data)
 {
-    qCDebug(mqttClient) << __func__ << "topic:" << topic << " data:" << data;
+    qCDebug(qfaceMqtt) << __func__ << "topic:" << topic << " data:" << data;
     QJsonDocument doc = QJsonDocument::fromVariant(data);
     QByteArray payload = doc.toJson();
 
@@ -55,14 +55,14 @@ bool MqttClient::connected() const
 
 int MqttClient::nextPackageId()
 {
-    qCDebug(mqttClient) << __func__;
+    qCDebug(qfaceMqtt) << __func__;
     m_packageId++;
     return m_packageId;
 }
 
 void MqttClient::setConnected(bool connected)
 {
-    qCDebug(mqttClient) << __func__ << connected;
+    qCDebug(qfaceMqtt) << __func__ << connected;
     if (m_connected == connected)
         return;
 
@@ -73,7 +73,7 @@ void MqttClient::setConnected(bool connected)
 
 void MqttClient::process()
 {
-    qCDebug(mqttClient) << __func__;
+    qCDebug(qfaceMqtt) << __func__;
 
     if(!m_client || !connected()) {
         return;
@@ -102,12 +102,12 @@ void MqttClient::onDisconnected()
 
 void MqttClient::onSubscribed(const QString &topic)
 {
-    qCDebug(mqttClient) << __func__ <<  topic;
+    qCDebug(qfaceMqtt) << __func__ <<  topic;
 }
 
 void MqttClient::onReceived(const QMQTT::Message &message)
 {
-    qCDebug(mqttClient) << __func__;
+    qCDebug(qfaceMqtt) << __func__;
     QString topic = message.topic();
     QJsonDocument doc = QJsonDocument::fromJson(message.payload());
     QVariantMap data = doc.toVariant().toMap();
@@ -116,7 +116,7 @@ void MqttClient::onReceived(const QMQTT::Message &message)
 
 void MqttClient::onError(const QMQTT::ClientError error)
 {
-    qCDebug(mqttClient) << __func__ << error;
+    qCDebug(qfaceMqtt) << __func__ << error;
 }
 
 }} // namespace QFace::MQTT
